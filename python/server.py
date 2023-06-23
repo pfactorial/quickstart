@@ -47,15 +47,21 @@ from plaid.model.ach_class import ACHClass
 from plaid.model.transfer_create_idempotency_key import TransferCreateIdempotencyKey
 from plaid.model.transfer_user_address_in_request import TransferUserAddressInRequest
 from plaid.api import plaid_api
+from flask_cors import CORS
+
 
 load_dotenv()
 
-
 app = Flask(__name__)
+CORS(app)
+
 
 # Fill in your Plaid API keys - https://dashboard.plaid.com/account/keys
 PLAID_CLIENT_ID = os.getenv('PLAID_CLIENT_ID')
 PLAID_SECRET = os.getenv('PLAID_SECRET')
+print('foobaroigjeowijg')
+print(PLAID_CLIENT_ID)
+print(PLAID_SECRET)
 # Use 'sandbox' to test with Plaid's Sandbox environment (username: user_good,
 # password: pass_good)
 # Use `development` to test with live users and credentials and `production`
@@ -133,11 +139,17 @@ item_id = None
 def info():
     global access_token
     global item_id
-    return jsonify({
+    response = jsonify({
         'item_id': item_id,
         'access_token': access_token,
         'products': PLAID_PRODUCTS
     })
+    print({
+        'item_id': item_id,
+        'access_token': access_token,
+        'products': PLAID_PRODUCTS
+    })
+    return response
 
 
 @app.route('/api/create_link_token_for_payment', methods=['POST'])

@@ -17,7 +17,7 @@ interface Props {
   transformData: (arg: any) => Array<DataItem>;
 }
 
-const Endpoint = (props: Props) => {
+const  Endpoint = (props: Props) => {
   const [showTable, setShowTable] = useState(false);
   const [transformedData, setTransformedData] = useState<Data>([]);
   const [pdf, setPdf] = useState<string | null>(null);

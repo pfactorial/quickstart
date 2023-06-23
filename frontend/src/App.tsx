@@ -11,7 +11,10 @@ const App = () => {
   const { linkSuccess, isItemAccess, isPaymentInitiation, dispatch } = useContext(Context);
 
   const getInfo = useCallback(async () => {
+    console.log('beep1')
     const response = await fetch("/api/info", { method: "POST" });
+    console.log('beep2')
+
     if (!response.ok) {
       dispatch({ type: "SET_STATE", state: { backend: false } });
       return { paymentInitiation: false };
